@@ -1,0 +1,49 @@
+<div class="container bootdey">
+    <div class="row">
+        <!-- Product Item -->
+        <ng-container *ngFor="let item of products">
+          <div class="product-grid col-xs-12 col-sm-6 col-md-3">
+            <div class="product-item">
+              <div class="image">
+                <a href="#"><img src="{{item.img}}" alt="Product 1"></a>
+              </div>
+              <div class="caption">
+                <div class="name text-center">
+                  <a href="#">{{item.name}}</a>
+                </div>
+                <div class="price">
+                  <span>{{item.price}}đ</span>
+                </div>
+                <div class="cart">
+                  <button type="button" (click)="addtocart(item)" class="btn btn-primary">Add to Cart</button>
+                </div>
+              </div>
+              <button type="button" class="btn btn-default wishlist" data-toggle="tooltip" data-placement="right" title="Wishlist"><i class="fa fa-heart"></i></button>
+              <button type="button" class="btn btn-default compare" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fa fa-circle-o"></i></button>
+            </div>
+          </div>
+    
+        </ng-container>
+        
+        <!-- <div class="product-grid col-xs-12 col-sm-6 col-md-3">
+          <div class="product-item">
+            <div class="image">
+              <a href="#"><img src="https://images.foody.vn/res/g5/48683/s120x120/29a0cbfe-a582-4b57-baf3-99823649-8134c0ad-211030124651.jpeg" alt="Product 1"></a>
+            </div>
+            <div class="caption">
+              <div class="name text-center">
+                <a href="#">Product 1</a>
+              </div>
+              <div class="price">
+                <span>$866.00</span>
+              </div>
+              <div class="cart">
+                <button type="button" class="btn btn-primary">Add to Cart</button>
+              </div>
+            </div>
+            <button type="button" class="btn btn-default wishlist" data-toggle="tooltip" data-placement="right" title="Wishlist"><i class="fa fa-heart"></i></button>
+            <button type="button" class="btn btn-default compare" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fa fa-circle-o"></i></button>
+          </div>
+        </div> -->
+      </div>
+    </div>
