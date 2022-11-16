@@ -7,6 +7,7 @@ import { OrderDTO } from '../dto/oderDTO';
 import { HelperService } from '../helper.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { DatePipe } from '@angular/common';
+import * as JsEncryptModule from 'jsencrypt';
 
 @Component({
   selector: 'app-order',
@@ -59,6 +60,7 @@ export class OrderComponent implements OnInit {
     // this.saveOrder(this.defaults);
     const order: OrderDTO = new OrderDTO(this.checkoutForm.value);
     console.log(order);
+    this.saveOrder(order);
     this.checkoutForm.reset();
     this.cartService.removeAllCart();
   }
@@ -66,6 +68,14 @@ export class OrderComponent implements OnInit {
   //   this.checkoutForm.get(fieldName).setValue(val.trim());
   // }
   public saveOrder(saveOrder:any): void{
+    let publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCz1zqQHtHvKczHh58ePiRNgOyiHEx6lZDPlvwBTaHmkNlQyyJ06SIlMU1pmGKxILjT7n06nxG7LlFVUN5MkW/jwF39/+drkHM5B0kh+hPQygFjRq81yxvLwolt+Vq7h+CTU0Z1wkFABcTeQQldZkJlTpyx0c3+jq0o47wIFjq5fwIDAQAB";
+    let RSAEncrypt = new JsEncryptModule.JSEncrypt();
+    RSAEncrypt.setPublicKey(publicKey);
+    saveOrder.email = RSAEncrypt.encrypt(saveOrder.email);
+    saveOrder.phoneNumber = RSAEncrypt.encrypt(saveOrder.phoneNumber);
+    saveOrder.address = RSAEncrypt.encrypt(saveOrder.address);
+    saveOrder.cardNumber = RSAEncrypt.encrypt(saveOrder.cardNumber);
+    console.log(saveOrder)
     this.helperService.saveOrder(saveOrder).subscribe((res: any)=>{
       console.log("ok");
     },(error: HttpErrorResponse)=>{

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CartDTO } from './dto/cartDTO';
 import { OrderDTO } from './dto/oderDTO';
@@ -9,6 +9,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class HelperService {
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Access-Control-Allow-Origin": "*",
+
+    }), responseType: 'text' as 'json'
+  };
   private apiServerUrl =environment.base_api_url;
 
   constructor(private http: HttpClient) { }
@@ -22,7 +29,7 @@ export class HelperService {
   public caculatePrice(cart:CartDTO):Observable<any>{
     return this.http.post<any>(`${this.apiServerUrl}/api/cart/caculate`,cart)
   }
-  public saveOrder(order: OrderDTO):Observable<any>{
-    return this.http.post<any>(`${this.apiServerUrl}/api/order`,order)
+  public saveOrder(order: any):Observable<any>{
+    return this.http.post<any>(`${this.apiServerUrl}/api/order`,order,this.httpOptions)
   }
 }
