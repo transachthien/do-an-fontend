@@ -9,16 +9,17 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class HelperService {
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      "Access-Control-Allow-Origin": "http://146.190.86.26:8080",
-
-    }), responseType: 'text' as 'json'
-  };
+  httpOptions: any;
+  
   private apiServerUrl =environment.base_api_url;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {this.httpOptions = {
+    headers: new HttpHeaders({
+        "Content-Type": "application/json",
+    }),
+    "Access-Control-Allow-Origin": `${environment.base_api_url}`,
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+}; }
 
   public getAllProduct():Observable<any>{
     return this.http.get<any>(`${this.apiServerUrl}/api/product/getAllProduct`,this.httpOptions)
