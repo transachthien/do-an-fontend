@@ -21,13 +21,13 @@ export class HelperService {
   constructor(private http: HttpClient) { }
 
   public getAllProduct():Observable<any>{
-    return this.http.get<any>(`${this.apiServerUrl}/api/product/getAllProduct`)
+    return this.http.get<any>(`${this.apiServerUrl}/api/product/getAllProduct`,this.httpOptions)
   }
   public getProductDetail(id: number):Observable<any>{
-    return this.http.get<any>(`${this.apiServerUrl}/api/product/getProductDetail?id=${id}`)
+    return this.http.get<any>(`${this.apiServerUrl}/api/product/getProductDetail?id=${id}`,this.httpOptions)
   }
   public caculatePrice(cart:CartDTO):Observable<any>{
-    return this.http.post<any>(`${this.apiServerUrl}/api/cart/caculate`,cart)
+    return this.http.post<any>(`${this.apiServerUrl}/api/cart/caculate`,cart,this.httpOptions)
   }
   public saveOrder(order: any):Observable<any>{
     return this.http.post<any>(`${this.apiServerUrl}/api/order`,order,this.httpOptions)
