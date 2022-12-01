@@ -12,7 +12,7 @@ export class HelperService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": "http://146.190.86.26:8080",
 
     }), responseType: 'text' as 'json'
   };
