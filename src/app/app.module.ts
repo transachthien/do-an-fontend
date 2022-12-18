@@ -16,6 +16,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { ValidationService } from './validation.service';
+import { FilterPipe } from 'src/shared/filter.pipe';
+import { LoginComponent } from './login/login.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ProductService } from './product.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +27,9 @@ import { ValidationService } from './validation.service';
     CartComponent,
     ProductsComponent,
     OrderComponent,
-
+    FilterPipe,
+    LoginComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,7 @@ import { ValidationService } from './validation.service';
   
 // entryComponents:[OrderComponent],
   
-  providers: [HelperService, ValidationService],
+  providers: [HelperService, ValidationService,ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,4 +4,5 @@ export interface ProductDTO{
     price : number;
     img : string;
     quantity :number;
+    category:string;
 }

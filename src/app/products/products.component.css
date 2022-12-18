@@ -224,3 +224,15 @@ product-item a {
     background-color: #04AA6D;
     color: white;
 }
+.item img {
+    width: 64px;
+}
+
+.item {
+    margin: 0px 15px;
+    text-align: center;
+}
+
+.item a:hover {
+    color: blue;
+}
